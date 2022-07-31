@@ -1,4 +1,6 @@
+import br.com.dio.challenge.domain.Bootcamp;
 import br.com.dio.challenge.domain.Course;
+import br.com.dio.challenge.domain.Dev;
 import br.com.dio.challenge.domain.Mentorship;
 
 import java.time.LocalDate;
@@ -16,13 +18,50 @@ public class Main {
         course1.setDescription("Descrição curso js");
         course1.setWorkload(4);
 
-        Mentorship mentorship1 = new Mentorship();
-        mentorship1.setTitle("Mentoria de java");
-        mentorship1.setDescription("Descrição mentoria java");
-        mentorship1.setDate(LocalDate.now());
+        Mentorship mentorship = new Mentorship();
+        mentorship.setTitle("Mentoria de java");
+        mentorship.setDescription("Descrição mentoria java");
+        mentorship.setDate(LocalDate.now());
 
-        System.out.println(course1);
-        System.out.println(course2);
-        System.out.println(mentorship1);
+        Bootcamp bootcamp = new Bootcamp();
+        bootcamp.setName("Bootcamp Java Developer");
+        bootcamp.setDescription("Descrição Bootcamp Java Developer");
+        bootcamp.getContents().add(course1);
+        bootcamp.getContents().add(course2);
+        bootcamp.getContents().add(mentorship);
+
+        Dev devVic = new Dev();
+        devVic.setName("Victória");
+        devVic.subscribeBootcamp(bootcamp);
+        System.out.println("Conteúdos inscritos Victória: " + devVic.getSubscribedContents());
+
+        devVic.progress();
+        devVic.progress();
+        System.out.println("-");
+
+        System.out.println("Conteúdos inscritos Victória: " + devVic.getSubscribedContents());
+        System.out.println("Conteúdos concluídos Victória: " + devVic.getFinishedContents());
+        System.out.println("XP: " + devVic.calculateTotalXp());
+
+        System.out.println("------------");
+
+        Dev devJoao = new Dev();
+        devJoao.setName("João");
+        devJoao.subscribeBootcamp(bootcamp);
+
+        System.out.println("Conteúdos inscritos João: " + devJoao.getSubscribedContents());
+
+        devJoao.progress();
+        devJoao.progress();
+        devJoao.progress();
+        System.out.println("-");
+
+        System.out.println("Conteúdos inscritos João: " + devJoao.getSubscribedContents());
+        System.out.println("Conteúdos concluídos João: " + devJoao.getFinishedContents());
+        System.out.println("XP: " + devJoao.calculateTotalXp());
+
+//        System.out.println(course1);
+//        System.out.println(course2);
+//        System.out.println(mentorship1);
     }
 }
